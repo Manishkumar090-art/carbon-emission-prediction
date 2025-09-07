@@ -1,1 +1,24 @@
+from pathlib import Path
+import json
+import joblib
+import pandas as pd
 
+ARTIFACT_DIR = Path(__file__).resolve().parents[1] / "model" / "artifacts"
+DATA_DIR = Path(__file__).resolve().parents[1] / "data"
+
+def load_artifacts():
+    model_path = ARTIFACT_DIR / "model.joblib"
+    fi_path = ARTIFACT_DIR / "feature_importances.json"
+    meta_path = ARTIFACT_DIR / "meta.json"
+    model = joblib.load(model_path)
+    with open(fi_path, "r", encoding="utf-8") as f:
+        fi = json.load(f)
+    with open(meta_path, "r", encoding="utf-8") as f:
+        meta = json.load(f)
+    return model, fi, meta
+
+def load_specs():
+    specs_path = DATA_DIR / "vehicle_specs.csv"
+    if specs_path.exists():
+        return pd.read_csv(specs_path)
+    return pd.DataFrame()
