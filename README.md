@@ -79,5 +79,5 @@ carbon-emission-project/
 ---
 👨‍💻 Author
 
-Arvind Kumar Sharma
-B.Tech CSE (AI & ML)
+Manish kumar
+B.Tech CSE 
